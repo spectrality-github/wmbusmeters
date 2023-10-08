@@ -56,7 +56,7 @@ namespace
             VifScaling::Auto,
             FieldMatcher::build()
             .set(MeasurementType::Instantaneous)
-            .set(VIFRange::PowerW)
+            .set(VIFRange::AnyPowerVIF)
             );
         
         addNumericFieldWithExtractor(
@@ -66,7 +66,10 @@ namespace
             Quantity::Power,
             VifScaling::Auto,
             FieldMatcher::build()
-            .set(DifVifKey("880128"))
+            .set(MeasurementType::Instantaneous)
+            .set(VIFRange::AnyPowerVIF)
+            .add(VIFCombinableRaw(0x8401))
+            .add(VIFCombinableRaw(0))
             );
 
         addNumericFieldWithExtractor(
@@ -76,7 +79,10 @@ namespace
             Quantity::Power,
             VifScaling::Auto,
             FieldMatcher::build()
-            .set(DifVifKey("880228"))
+            .set(MeasurementType::Instantaneous)
+            .set(VIFRange::AnyPowerVIF)
+            .add(VIFCombinableRaw(0x8402))
+            .add(VIFCombinableRaw(0))
             );
 
         addNumericFieldWithExtractor(
@@ -86,7 +92,10 @@ namespace
             Quantity::Power,
             VifScaling::Auto,
             FieldMatcher::build()
-            .set(DifVifKey("880328"))
+            .set(MeasurementType::Instantaneous)
+            .set(VIFRange::AnyPowerVIF)
+            .add(VIFCombinableRaw(0x8403))
+            .add(VIFCombinableRaw(0))
             );
         
         addNumericFieldWithExtractor(
@@ -94,9 +103,12 @@ namespace
             "Voltage at phase L1.",
             DEFAULT_PRINT_PROPERTIES,
             Quantity::Voltage,
-            VifScaling::None,
+            VifScaling::AutoSigned,
             FieldMatcher::build()
-            .set(DifVifKey("8801FD40"))
+            .set(MeasurementType::Instantaneous)
+            .set(VIFRange::Voltage)
+            .add(VIFCombinableRaw(0x8201))
+            .add(VIFCombinableRaw(0))
             );
 
         addNumericFieldWithExtractor(
@@ -104,9 +116,12 @@ namespace
             "Voltage at phase L2.",
             DEFAULT_PRINT_PROPERTIES,
             Quantity::Voltage,
-            VifScaling::None,
+            VifScaling::AutoSigned,
             FieldMatcher::build()
-            .set(DifVifKey("8802FD40"))
+            .set(MeasurementType::Instantaneous)
+            .set(VIFRange::Voltage)
+            .add(VIFCombinableRaw(0x8202))
+            .add(VIFCombinableRaw(0))
             );
 
         addNumericFieldWithExtractor(
@@ -114,9 +129,12 @@ namespace
             "Voltage at phase L3.",
             DEFAULT_PRINT_PROPERTIES,
             Quantity::Voltage,
-            VifScaling::None,
+            VifScaling::AutoSigned,
             FieldMatcher::build()
-            .set(DifVifKey("8803FD40"))
+            .set(MeasurementType::Instantaneous)
+            .set(VIFRange::Voltage)
+            .add(VIFCombinableRaw(0x8203))
+            .add(VIFCombinableRaw(0))
             );
        
 

@@ -627,6 +627,23 @@ void MeterCommonImplementation::poll(shared_ptr<BusManager> bus_manager)
                     id.c_str(),
                     bus_device->busAlias().c_str());
             bus_device->serial()->send(buf);
+            
+            usleep(1000*500);
+
+            buf.resize(5);
+            buf[0] = 0x10; // Start
+            buf[1] = 0x5b; // REQ_UD2
+            buf[2] = 0xfd; // 00 or address 253 previously setup
+            cs = 0;
+            for (int i=1; i<3; ++i) cs += buf[i];
+            buf[3] = cs; // checksum
+            buf[4] = 0x16; // Stop
+
+            verbose("(meter) polling %s %s (secondary) with req ud2 bus %s\n",
+                    name().c_str(),
+                    id.c_str(),
+                    bus_device->busAlias().c_str());
+            bus_device->serial()->send(buf);
         }
         bool ok = waiting_for_poll_response_sem_.wait();
         if (!ok)
