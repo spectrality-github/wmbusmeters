@@ -27,7 +27,7 @@ namespace
     static bool ok = registerDriver([](DriverInfo&di)
     {
         di.setName("nzr");
-        di.setDefaultFields("name,id,total_energy_consumption_kwh,current_power_consumption_kw,current_power_consumption_1_kw,current_power_consumption_2_kw,current_power_consumption_3_kw,voltage_at_phase_1_v,voltage_at_phase_2_v,voltage_at_phase_3_v");
+        di.setDefaultFields("name,id,total_energy_consumption_kwh,current_power_consumption_kw,current_power_consumption_1_kw,current_power_consumption_2_kw,current_power_consumption_3_kw,voltage_at_phase_1_v,voltage_at_phase_2_v,voltage_at_phase_3_v,current_at_phase_1_a,current_at_phase_2_a,current_at_phase_3_a");
         di.setMeterType(MeterType::ElectricityMeter);
         di.addLinkMode(LinkMode::T1);
         di.addDetection(MANUFACTURER_NZR,  0x02,  0x00);
@@ -131,12 +131,47 @@ namespace
             .set(StorageNr(6))
             );
        
+       addNumericFieldWithExtractor(
+            "current_at_phase_1",
+            "Current at phase L1.",
+            DEFAULT_PRINT_PROPERTIES,
+            Quantity::Amperage,
+            VifScaling::AutoSigned,
+            FieldMatcher::build()
+            .set(MeasurementType::Instantaneous)
+            .set(VIFRange::Amperage)
+            .set(StorageNr(2))
+            );
+
+        addNumericFieldWithExtractor(
+            "current_at_phase_2",
+            "Current at phase L2.",
+            DEFAULT_PRINT_PROPERTIES,
+            Quantity::Amperage,
+            VifScaling::AutoSigned,
+            FieldMatcher::build()
+            .set(MeasurementType::Instantaneous)
+            .set(VIFRange::Amperage)
+            .set(StorageNr(4))
+            );
+
+        addNumericFieldWithExtractor(
+            "current_at_phase_3",
+            "Current at phase L3.",
+            DEFAULT_PRINT_PROPERTIES,
+            Quantity::Amperage,
+            VifScaling::AutoSigned,
+            FieldMatcher::build()
+            .set(MeasurementType::Instantaneous)
+            .set(VIFRange::Amperage)
+            .set(StorageNr(6))
+            );
 
     }
 }
 
 // Test: MyElectricity1 nzr 07911459 NOKEY
-// telegram=|4E4401061010101002027A00004005_2F2F0E035040691500000B2B300300066D00790C7423400C78371204860BABC8FC100000000E833C8074000000000BAB3C0000000AFDC9FC0136022F2F2F2F2F|
+// telegram=|68222268080B7259149107523B0002580000008c1005857649008400292f6a010001fd17001fd116|
 // {"media":"electricity","meter":"nzr","name":"MyElectricity1","id":"10101010","total_energy_consumption_kwh":15694.05,"current_power_consumption_kw":0.33,"total_energy_production_kwh":7.48,"current_power_production_kw":0,"voltage_at_phase_1_v":236,"device_date_time":"2019-03-20 12:57:00","timestamp":"1111-11-11T11:11:11Z"}
 // |MyElectricity1;10101010;15694.05;0.33;7.48;0;236;null;null;null;null;null;null;null;null;1111-11-11 11:11.11
 
