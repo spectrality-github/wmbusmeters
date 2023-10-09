@@ -68,7 +68,7 @@ namespace
             FieldMatcher::build()
             .set(MeasurementType::Instantaneous)
             .set(VIFRange::AnyPowerVIF)
-            .set(SubUnitNr(2))
+            .set(StorageNr(2))
             );
 
         addNumericFieldWithExtractor(
@@ -80,7 +80,7 @@ namespace
             FieldMatcher::build()
             .set(MeasurementType::Instantaneous)
             .set(VIFRange::AnyPowerVIF)
-            .set(SubUnitNr(4))
+            .set(StorageNr(4))
             );
 
         addNumericFieldWithExtractor(
@@ -92,7 +92,7 @@ namespace
             FieldMatcher::build()
             .set(MeasurementType::Instantaneous)
             .set(VIFRange::AnyPowerVIF)
-            .set(SubUnitNr(6))
+            .set(StorageNr(6))
             );
         
         addNumericFieldWithExtractor(
@@ -104,7 +104,7 @@ namespace
             FieldMatcher::build()
             .set(MeasurementType::Instantaneous)
             .set(VIFRange::Voltage)
-            .set(SubUnitNr(2))
+            .set(StorageNr(2))
             );
 
         addNumericFieldWithExtractor(
@@ -116,7 +116,7 @@ namespace
             FieldMatcher::build()
             .set(MeasurementType::Instantaneous)
             .set(VIFRange::Voltage)
-            .set(SubUnitNr(4))
+            .set(StorageNr(4))
             );
 
         addNumericFieldWithExtractor(
@@ -128,7 +128,7 @@ namespace
             FieldMatcher::build()
             .set(MeasurementType::Instantaneous)
             .set(VIFRange::Voltage)
-            .set(SubUnitNr(6))
+            .set(StorageNr(6))
             );
        
 
