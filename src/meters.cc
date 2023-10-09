@@ -628,7 +628,7 @@ void MeterCommonImplementation::poll(shared_ptr<BusManager> bus_manager)
                     bus_device->busAlias().c_str());
             bus_device->serial()->send(buf);
             
-            usleep(1000*500);
+            usleep(1000*1500);
 
             buf.resize(5);
             buf[0] = 0x10; // Start
