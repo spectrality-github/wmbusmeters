@@ -176,7 +176,7 @@ namespace
 // |MyElectricity1;07911459;49768.5;0.92719;null;null;null;null;null;null;null;null;null;1111-11-11 11:11.11
 
 // Test: MyElectricity2 nzr 17911459 NOKEY
-// telegram=|684f4f68080B7259149117523B00029200000084002ccB00000084012962fB0000840229e85f010084032905Bf00008201fd49ed008202fd49e9008203fd49ea008201fd5a21018202fd5a8d018203fd5ad700d216|
+// telegram=|684f4f68080B7259149117523B00029200000084002ccB00000084012962fB0000840229e85f010084032905Bf00008201fd49ed008202fd49e9008203fd49ea008201fd5a21018202fd5a8d018203fd5ad700e216|
 // {"media":"electricity","meter":"nzr","name":"MyElectricity2","id":"17911459","current_power_consumption_kw":2.03,"current_power_consumption_1_kw":0.64354,"current_power_consumption_2_kw":0.90088,"current_power_consumption_3_kw":0.48901,"voltage_at_phase_1_v":237,"voltage_at_phase_2_v":233,"voltage_at_phase_3_v":234,"current_at_phase_1_a":2.89,"current_at_phase_2_a":3.97,"current_at_phase_3_a":2.15,"timestamp":"1111-11-11T11:11:11Z"}
 // |MyElectricity2;17911459;49768.5;2.03;0.64354;0.90088;0.48901;237;233;234;2.89;3.97;2.15;1111-11-11 11:11.11
 
