@@ -68,8 +68,7 @@ namespace
             FieldMatcher::build()
             .set(MeasurementType::Instantaneous)
             .set(VIFRange::AnyPowerVIF)
-            .add(VIFCombinableRaw(0x8401))
-            .add(VIFCombinableRaw(0))
+            .set(SubUnitNr(2))
             );
 
         addNumericFieldWithExtractor(
@@ -81,8 +80,7 @@ namespace
             FieldMatcher::build()
             .set(MeasurementType::Instantaneous)
             .set(VIFRange::AnyPowerVIF)
-            .add(VIFCombinableRaw(0x8402))
-            .add(VIFCombinableRaw(0))
+            .set(SubUnitNr(4))
             );
 
         addNumericFieldWithExtractor(
@@ -94,8 +92,7 @@ namespace
             FieldMatcher::build()
             .set(MeasurementType::Instantaneous)
             .set(VIFRange::AnyPowerVIF)
-            .add(VIFCombinableRaw(0x8403))
-            .add(VIFCombinableRaw(0))
+            .set(SubUnitNr(6))
             );
         
         addNumericFieldWithExtractor(
@@ -107,8 +104,7 @@ namespace
             FieldMatcher::build()
             .set(MeasurementType::Instantaneous)
             .set(VIFRange::Voltage)
-            .add(VIFCombinableRaw(0x8201))
-            .add(VIFCombinableRaw(0))
+            .set(SubUnitNr(2))
             );
 
         addNumericFieldWithExtractor(
@@ -120,8 +116,7 @@ namespace
             FieldMatcher::build()
             .set(MeasurementType::Instantaneous)
             .set(VIFRange::Voltage)
-            .add(VIFCombinableRaw(0x8202))
-            .add(VIFCombinableRaw(0))
+            .set(SubUnitNr(4))
             );
 
         addNumericFieldWithExtractor(
@@ -133,8 +128,7 @@ namespace
             FieldMatcher::build()
             .set(MeasurementType::Instantaneous)
             .set(VIFRange::Voltage)
-            .add(VIFCombinableRaw(0x8203))
-            .add(VIFCombinableRaw(0))
+            .set(SubUnitNr(6))
             );
        
 
