@@ -632,7 +632,7 @@ void MeterCommonImplementation::poll(shared_ptr<BusManager> bus_manager)
 
             buf.resize(5);
             buf[0] = 0x10; // Start
-            buf[1] = 0x5b; // REQ_UD2
+            buf[1] = 0x7b; // REQ_UD2
             buf[2] = 0xfd; // 00 or address 253 previously setup
             cs = 0;
             for (int i=1; i<3; ++i) cs += buf[i];
