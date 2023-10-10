@@ -639,7 +639,7 @@ void MeterCommonImplementation::poll(shared_ptr<BusManager> bus_manager)
             buf[3] = cs; // checksum
             buf[4] = 0x16; // Stop
 
-            verbose("(meter) polling %s %s (secondary) with req ud2 bus %s\n",
+            verbose("(meter) polling %s %s (secondary) with req ud2 bus %s second telegram\n",
                     name().c_str(),
                     id.c_str(),
                     bus_device->busAlias().c_str());
