@@ -31,6 +31,7 @@ namespace
         di.setMeterType(MeterType::ElectricityMeter);
         di.addLinkMode(LinkMode::T1);
         di.addDetection(MANUFACTURER_NZR,  0x02,  0x00);
+        di.addDetection(MANUFACTURER_EMH,  0x02,  0x00);
         di.setConstructor([](MeterInfo& mi, DriverInfo& di){ return shared_ptr<Meter>(new Driver(mi, di)); });
     });
 
