@@ -29,8 +29,8 @@ namespace
         di.setDefaultFields("name,id,total_energy_consumption_kwh,current_power_consumption_kw,current_power_consumption_1_kw,current_power_consumption_2_kw,current_power_consumption_3_kw,voltage_at_phase_1_v,voltage_at_phase_2_v,voltage_at_phase_3_v,current_at_phase_1_a,current_at_phase_2_a,current_at_phase_3_a");
         di.setMeterType(MeterType::ElectricityMeter);
         di.addLinkMode(LinkMode::T1);
-        di.addDetection(MANUFACTURER_NZR,  0x02,  0x02);
-        di.addDetection(MANUFACTURER_EMH,  0x02,  0x02);
+        di.addDetection(MANUFACTURER_NZR,  0x02,  0x00);
+        di.addDetection(MANUFACTURER_EMH,  0x02,  0x00);
         di.setConstructor([](MeterInfo& mi, DriverInfo& di){ return shared_ptr<Meter>(new Driver(mi, di)); });
     });
 
