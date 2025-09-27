@@ -1,5 +1,5 @@
 /*
- Copyright (C) 2019-2022 Fredrik Öhrström (gpl-3.0-or-later)
+ Copyright (C) 2020-2022 Fredrik Öhrström (gpl-3.0-or-later)
 
  This program is free software: you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -14,7 +14,6 @@
  You should have received a copy of the GNU General Public License
  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
-
 #include"meters_common_implementation.h"
 
 namespace
@@ -30,19 +29,26 @@ namespace
         di.setDefaultFields("name,id,total_energy_consumption_kwh,current_power_consumption_kw,current_power_consumption_1_kw,current_power_consumption_2_kw,current_power_consumption_3_kw,voltage_at_phase_1_v,voltage_at_phase_2_v,voltage_at_phase_3_v,current_at_phase_1_a,current_at_phase_2_a,current_at_phase_3_a");
         di.setMeterType(MeterType::ElectricityMeter);
         di.addLinkMode(LinkMode::T1);
-        di.addDetection(MANUFACTURER_NZR,  0x02,  0x00);
-        di.addDetection(MANUFACTURER_EMH,  0x02,  0x00);
+        di.addDetection(MANUFACTURER_NZR,  0x02,  0x02);
+        di.addDetection(MANUFACTURER_EMH,  0x02,  0x02);
         di.setConstructor([](MeterInfo& mi, DriverInfo& di){ return shared_ptr<Meter>(new Driver(mi, di)); });
     });
 
     Driver::Driver(MeterInfo &mi, DriverInfo &di) : MeterCommonImplementation(mi, di)
     {
+        addStringField(
+            "status",
+            "Meter status. Includes both meter error field and tpl status field.",
+            PrintProperty::STATUS | PrintProperty::INCLUDE_TPL_STATUS);
+
+        addOptionalLibraryFields("on_time_h");
+
         addNumericFieldWithExtractor(
             "total_energy_consumption",
             "The total energy consumption recorded by this meter.",
             DEFAULT_PRINT_PROPERTIES,
             Quantity::Energy,
-            VifScaling::Auto,
+            VifScaling::Auto, DifSignedness::Signed,
             FieldMatcher::build()
             .set(MeasurementType::Instantaneous)
             .set(VIFRange::AnyEnergyVIF)
@@ -54,7 +60,7 @@ namespace
             "Current power consumption.",
             DEFAULT_PRINT_PROPERTIES,
             Quantity::Power,
-            VifScaling::Auto,
+            VifScaling::Auto, DifSignedness::Signed,
             FieldMatcher::build()
             .set(MeasurementType::Instantaneous)
             .set(VIFRange::AnyPowerVIF)
@@ -65,7 +71,7 @@ namespace
             "Current power consumption L1.",
             DEFAULT_PRINT_PROPERTIES,
             Quantity::Power,
-            VifScaling::Auto,
+            VifScaling::Auto, DifSignedness::Signed,
             FieldMatcher::build()
             .set(MeasurementType::Instantaneous)
             .set(VIFRange::AnyPowerVIF)
@@ -77,7 +83,7 @@ namespace
             "Current power consumption L2.",
             DEFAULT_PRINT_PROPERTIES,
             Quantity::Power,
-            VifScaling::Auto,
+            VifScaling::Auto, DifSignedness::Signed,
             FieldMatcher::build()
             .set(MeasurementType::Instantaneous)
             .set(VIFRange::AnyPowerVIF)
@@ -89,7 +95,7 @@ namespace
             "Current power consumption L3.",
             DEFAULT_PRINT_PROPERTIES,
             Quantity::Power,
-            VifScaling::Auto,
+            VifScaling::Auto, DifSignedness::Signed,
             FieldMatcher::build()
             .set(MeasurementType::Instantaneous)
             .set(VIFRange::AnyPowerVIF)
@@ -101,7 +107,7 @@ namespace
             "Voltage at phase L1.",
             DEFAULT_PRINT_PROPERTIES,
             Quantity::Voltage,
-            VifScaling::AutoSigned,
+            VifScaling::Auto, DifSignedness::Signed,
             FieldMatcher::build()
             .set(MeasurementType::Instantaneous)
             .set(VIFRange::Voltage)
@@ -113,7 +119,7 @@ namespace
             "Voltage at phase L2.",
             DEFAULT_PRINT_PROPERTIES,
             Quantity::Voltage,
-            VifScaling::AutoSigned,
+            VifScaling::Auto, DifSignedness::Signed,
             FieldMatcher::build()
             .set(MeasurementType::Instantaneous)
             .set(VIFRange::Voltage)
@@ -125,7 +131,7 @@ namespace
             "Voltage at phase L3.",
             DEFAULT_PRINT_PROPERTIES,
             Quantity::Voltage,
-            VifScaling::AutoSigned,
+            VifScaling::Auto, DifSignedness::Signed,
             FieldMatcher::build()
             .set(MeasurementType::Instantaneous)
             .set(VIFRange::Voltage)
@@ -137,7 +143,7 @@ namespace
             "Current at phase L1.",
             DEFAULT_PRINT_PROPERTIES,
             Quantity::Amperage,
-            VifScaling::AutoSigned,
+            VifScaling::Auto, DifSignedness::Signed,
             FieldMatcher::build()
             .set(MeasurementType::Instantaneous)
             .set(VIFRange::Amperage)
@@ -149,7 +155,7 @@ namespace
             "Current at phase L2.",
             DEFAULT_PRINT_PROPERTIES,
             Quantity::Amperage,
-            VifScaling::AutoSigned,
+            VifScaling::Auto, DifSignedness::Signed,
             FieldMatcher::build()
             .set(MeasurementType::Instantaneous)
             .set(VIFRange::Amperage)
@@ -161,7 +167,7 @@ namespace
             "Current at phase L3.",
             DEFAULT_PRINT_PROPERTIES,
             Quantity::Amperage,
-            VifScaling::AutoSigned,
+            VifScaling::Auto, DifSignedness::Signed,
             FieldMatcher::build()
             .set(MeasurementType::Instantaneous)
             .set(VIFRange::Amperage)
